@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Artist Portfolio</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0f0f0f;
+      color: #f5f5f5;
+    }
+
+    header {
+      padding: 20px;
+      text-align: center;
+      background: #151515;
+      border-bottom: 1px solid #222;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    nav {
+      margin-top: 10px;
+    }
+
+    nav a {
+      color: #aaa;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      color: #fff;
+    }
+
+    section {
+      padding: 50px 20px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #333;
+      padding-bottom: 10px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #181818;
+      border-radius: 12px;
+      padding: 15px;
+      transition: transform 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .card h3 {
+      margin: 10px 0 5px;
+    }
+
+    .card a {
+      color: #5aa9ff;
+      text-decoration: none;
+    }
+
+    .price {
+      font-weight: bold;
+      margin-top: 5px;
+    }
+
+    button {
+      background: #5aa9ff;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    button:hover {
+      background: #7cbcff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #151515;
+      border-top: 1px solid #222;
+      color: #777;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Your Name / Brand</h1>
+  <nav>
+    <a href="#art">Art</a>
+    <a href="#supplies">Supplies I Use</a>
+    <a href="#shop">Shop</a>
+  </nav>
+</header>
+
+<div style="text-align:center; padding:10px;">
+  <button onclick="requestPassword()">Toggle Edit Mode</button>
+</div>
+
+<section id="art" contenteditable="false">
+  <h2>Artwork</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="art1.jpg" alt="Artwork">
+      <h3>Artwork Title</h3>
+    </div>
+
+    <div class="card">
+      <img src="art2.jpg" alt="Artwork">
+      <h3>Artwork Title</h3>
+    </div>
+  </div>
+</section>
+
+<section id="supplies" contenteditable="false">
+  <h2>Supplies I Use</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="pen.jpg" alt="Supply">
+      <h3>Apple Pencil</h3>
+      <a href="https://example.com" target="_blank">Buy here</a>
+    </div>
+
+    <div class="card">
+      <img src="ink.jpg" alt="Supply">
+      <h3>Fineliner</h3>
+      <a href="https://example.com" target="_blank">Buy here</a>
+    </div>
+  </div>
+</section>
+
+<section id="shop" contenteditable="false">
+  <h2>Shop</h2>
+  <div class="grid">
+    <div class="card">
+      <img src="print1.jpg" alt="Print">
+      <h3>Art Print</h3>
+      <div class="price">$15</div>
+      <button onclick="location.href='https://etsy.com'">Buy</button>
+    </div>
+
+    <div class="card">
+      <img src="print2.jpg" alt="Print">
+      <h3>Sticker Pack</h3>
+      <div class="price">$8</div>
+      <button onclick="location.href='https://etsy.com'">Buy</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Your Name · All rights reserved
+</footer>
+
+<script>
+  let editing = false;
+  const PASSWORD = "1052409";
+
+  function requestPassword() {
+    const input = prompt("Enter edit password:");
+    if (input === PASSWORD) {
+      toggleEdit();
+    } else if (input !== null) {
+      alert("Incorrect password");
+    }
+  }
+
+  function toggleEdit() {
+    editing = !editing;
+    document.querySelectorAll("section").forEach(section => {
+      section.contentEditable = editing;
+      section.style.outline = editing ? "2px dashed #5aa9ff" : "none";
+    });
+    alert(editing ? "Edit mode ON" : "Edit mode OFF");
+  }
+</script>
+
+</body>
+</html>
