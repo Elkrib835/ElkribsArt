@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Artist Portfolio</title>
+  <title>Elliot Birkle - Artist Website</title>
 
   <style>
     body {
@@ -106,6 +106,24 @@
       background: #151515;
       border-top: 1px solid #222;
       color: #777;
+      position: relative;
+    }
+
+    #editToggle {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      background: #5aa9ff;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 12px;
+      opacity: 0.6;
+    }
+
+    #editToggle:hover {
+      opacity: 1;
     }
   </style>
 </head>
@@ -113,46 +131,29 @@
 <body>
 
 <header>
-  <h1>Your Name / Brand</h1>
+  <h1>Elliot Birkle</h1>
   <nav>
-    <a href="#art">Art</a>
-    <a href="#supplies">Supplies I Use</a>
+    <a href="#home">Home</a>
+    <a href="#portfolio">Portfolio</a>
     <a href="#shop">Shop</a>
   </nav>
 </header>
 
-<div style="text-align:center; padding:10px;">
-  <button onclick="requestPassword()">Toggle Edit Mode</button>
-</div>
+<section id="home" contenteditable="false">
+  <h2>About Me</h2>
+  <p>Write all about yourself here...</p>
+</section>
 
-<section id="art" contenteditable="false">
-  <h2>Artwork</h2>
+<section id="portfolio" contenteditable="false">
+  <h2>Portfolio</h2>
   <div class="grid">
     <div class="card">
       <img src="art1.jpg" alt="Artwork">
       <h3>Artwork Title</h3>
     </div>
-
     <div class="card">
       <img src="art2.jpg" alt="Artwork">
       <h3>Artwork Title</h3>
-    </div>
-  </div>
-</section>
-
-<section id="supplies" contenteditable="false">
-  <h2>Supplies I Use</h2>
-  <div class="grid">
-    <div class="card">
-      <img src="pen.jpg" alt="Supply">
-      <h3>Apple Pencil</h3>
-      <a href="https://example.com" target="_blank">Buy here</a>
-    </div>
-
-    <div class="card">
-      <img src="ink.jpg" alt="Supply">
-      <h3>Fineliner</h3>
-      <a href="https://example.com" target="_blank">Buy here</a>
     </div>
   </div>
 </section>
@@ -166,7 +167,6 @@
       <div class="price">$15</div>
       <button onclick="location.href='https://etsy.com'">Buy</button>
     </div>
-
     <div class="card">
       <img src="print2.jpg" alt="Print">
       <h3>Sticker Pack</h3>
@@ -177,7 +177,8 @@
 </section>
 
 <footer>
-  © 2026 Your Name · All rights reserved
+  © 2026 Elliot Birkle · All rights reserved
+  <div id="editToggle" onclick="requestPassword()">Edit</div>
 </footer>
 
 <script>
