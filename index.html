@@ -1,36 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Elliot Birkle - Artist Website</title>
-  <style>
-    body { margin:0; font-family: Arial, Helvetica, sans-serif; background:#0f0f0f; color:#f5f5f5; }
-    header { padding:20px; text-align:center; background:#151515; border-bottom:1px solid #222; }
-    header h1 { margin:0; font-size:2rem; }
-    nav { margin-top:10px; }
-    nav a { color:#aaa; margin:0 10px; text-decoration:none; }
-    nav a:hover { color:#fff; }
-    section { padding:50px 20px; max-width:1100px; margin:auto; }
-    h2 { margin-bottom:20px; border-bottom:1px solid #333; padding-bottom:10px; }
-    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px; }
-    .card { background:#181818; border-radius:12px; padding:15px; position:relative; transition: transform 0.2s ease; }
-    .card:hover { transform: translateY(-5px); }
-    .card img { width:100%; border-radius:10px; cursor:pointer; }
-    .card h3 { margin:10px 0 5px; }
-    .card a { color:#5aa9ff; text-decoration:none; }
-    .price { font-weight:bold; margin-top:5px; }
-    button { background:#5aa9ff; border:none; padding:10px 15px; border-radius:8px; cursor:pointer; margin-top:10px; }
-    button:hover { background:#7cbcff; }
-    footer { text-align:center; padding:20px; background:#151515; border-top:1px solid #222; color:#777; position:relative; }
-    #editToggle { position:absolute; bottom:5px; right:5px; background:#5aa9ff; color:#fff; padding:5px 10px; border-radius:5px; cursor:pointer; font-size:12px; opacity:0.6; }
-    #editToggle:hover { opacity:1; }
-    .arrow { position:absolute; top:50%; right:5px; transform:translateY(-50%); font-size:20px; cursor:pointer; color:#fff; display:none; }
-    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; }
-    .modal-content { background:#181818; padding:20px; border-radius:10px; max-width:90%; max-height:90%; overflow:auto; }
-    .closeModal { position:absolute; top:10px; right:20px; font-size:30px; cursor:pointer; }
-    .addBox, .removeBox { margin-top:10px; background:#7cbcff; padding:5px 8px; border-radius:5px; cursor:pointer; font-size:12px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elliot Birkle - Artist Website</title>
+<style>
+  body { margin:0; font-family:Arial, Helvetica, sans-serif; background:#0f0f0f; color:#f5f5f5; transition: background 0.3s, color 0.3s; }
+  header { padding:20px; text-align:center; background:#151515; border-bottom:1px solid #222; display:flex; align-items:center; justify-content:space-between; }
+  header h1 { margin:0; font-size:2rem; }
+  nav a { color:#aaa; margin:0 10px; text-decoration:none; }
+  nav a:hover { color:#fff; }
+  section { padding:50px 20px; max-width:1100px; margin:auto; }
+  h2 { margin-bottom:20px; border-bottom:1px solid #333; padding-bottom:10px; }
+  .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap:20px; }
+  .card { background:#181818; border-radius:12px; padding:15px; position:relative; transition: transform 0.2s ease; }
+  .card:hover { transform: translateY(-5px); }
+  .card img { width:100%; border-radius:10px; cursor:pointer; }
+  .card h3 { margin:10px 0 5px; }
+  .card a { color:#5aa9ff; text-decoration:none; }
+  .price { font-weight:bold; margin-top:5px; }
+  button { background:#5aa9ff; border:none; padding:10px 15px; border-radius:8px; cursor:pointer; margin-top:10px; transition: background 0.3s; }
+  button:hover { background:#7cbcff; }
+  footer { text-align:center; padding:20px; background:#151515; border-top:1px solid #222; color:#777; position:relative; }
+  #editToggle { position:absolute; bottom:5px; right:5px; background:#5aa9ff; color:#fff; padding:5px 10px; border-radius:5px; cursor:pointer; font-size:12px; opacity:0.6; }
+  #editToggle:hover { opacity:1; }
+  #modeToggle { padding:5px 10px; border-radius:5px; border:none; cursor:pointer; background:#5aa9ff; color:#fff; transition: background 0.3s; }
+  #modeToggle:hover { background:#7cbcff; }
+  .arrow { position:absolute; top:50%; right:5px; transform:translateY(-50%); font-size:20px; cursor:pointer; color:#fff; display:none; }
+  .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; }
+  .modal-content { background:#181818; padding:20px; border-radius:10px; max-width:90%; max-height:90%; overflow:auto; }
+  .closeModal { position:absolute; top:10px; right:20px; font-size:30px; cursor:pointer; }
+  .addBox, .removeBox { margin-top:10px; background:#7cbcff; padding:5px 8px; border-radius:5px; cursor:pointer; font-size:12px; }
+  /* Light mode styles */
+  body.light-mode { background:#f5f5f5; color:#111; }
+  body.light-mode header { background:#ddd; color:#111; }
+  body.light-mode .card { background:#fff; color:#111; }
+  body.light-mode .card a { color:#0077cc; }
+  body.light-mode button { background:#0077cc; color:#fff; }
+  body.light-mode footer { background:#ddd; color:#111; }
+</style>
 </head>
 <body>
 
@@ -42,11 +50,17 @@
     <a href="shop.html">Shop</a>
     <a href="supplies.html">Supplies I Use</a>
   </nav>
+  <button id="modeToggle" onclick="toggleMode()">Light Mode</button>
 </header>
 
-<section id="home" contenteditable="false">
-  <h2>About Me</h2>
-  <p>Write about yourself here...</p>
+<!-- === PAGE SECTION === -->
+<!-- Example: Portfolio section -->
+<section id="portfolio" contenteditable="false">
+  <h2>Portfolio</h2>
+  <div class="grid" id="portfolioContainer">
+    <!-- Boxes will appear here -->
+  </div>
+  <button class="addBox" onclick="addBox('portfolioContainer')">Add Box</button>
 </section>
 
 <footer>
@@ -54,7 +68,7 @@
   <div id="editToggle" onclick="requestPassword()">Edit</div>
 </footer>
 
-<!-- Modal for Shop or Supplies -->
+<!-- Modal for Shop/Supplies -->
 <div id="modal" class="modal">
   <div class="modal-content" id="modalContent">
     <span class="closeModal" onclick="closeModal()">&times;</span>
@@ -88,7 +102,7 @@ function openModal(contentHTML){
 }
 function closeModal(){ document.getElementById('modal').style.display = 'none'; }
 
-// Function to add/remove boxes dynamically in edit mode
+// Add/remove boxes dynamically
 function addBox(containerID){
   if(!editing) return;
   const container = document.getElementById(containerID);
@@ -103,7 +117,7 @@ function addBox(containerID){
   container.appendChild(box);
 }
 
-// Function to show arrows if multiple images (for Instagram-style galleries)
+// Multi-image arrow (Instagram-style)
 function updateArrows(containerID){
   const boxes = document.querySelectorAll(`#${containerID} .card`);
   boxes.forEach(box=>{
@@ -124,6 +138,14 @@ function updateArrows(containerID){
   });
 }
 
+// Dark/Light mode toggle
+function toggleMode(){
+  document.body.classList.toggle('light-mode');
+  const btn = document.getElementById('modeToggle');
+  if(document.body.classList.contains('light-mode')){
+    btn.innerText='Dark Mode';
+  } else { btn.innerText='Light Mode'; }
+}
 </script>
 
 </body>
